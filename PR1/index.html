@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Application A: Login Validation -->
+    <div class="container">
+        <h2>Login Application</h2>
+
+        <form onsubmit="return checkLogin(event)">
+            <input type="text" id="username"
+                   placeholder="Enter Username" required>
+
+            <input type="password" id="password"
+                   placeholder="Enter Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="message" id="loginMessage"></p>
+    </div>
+
+    <!-- Application B: Mobile and Email Validation -->
+    <div class="container">
+        <h2>Mobile & Email Validation</h2>
+
+        <form onsubmit="return validateDetails(event)">
+            <input type="text" id="mobile"
+                   placeholder="Enter 10-digit mobile number"
+                   maxlength="10" required>
+
+            <input type="text" id="email"
+                   placeholder="Enter Email ID" required>
+
+            <button type="submit">Validate</button>
+        </form>
+
+        <p class="message" id="validationMessage"></p>
+    </div>
+
+    <script>
+        // A. Check Username and Password
+        function checkLogin(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let message = document.getElementById("loginMessage");
+
+            if (username === "admin" && password === "12345") {
+                message.style.color = "green";
+                message.innerHTML = "Login Successful!";
+
+                // Navigate to the next page
+                window.location.href = "next.html";
+            } else {
+                message.style.color = "red";
+                message.innerHTML = "Invalid Username or Password!";
+            }
+
+            return false;
+        }
+
+        // B. Check Mobile Number and Email
+        function validateDetails(event) {
+            event.preventDefault();
+
+            let mobile = document.getElementById("mobile").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("validationMessage");
+
+            // Mobile must contain 10 digits and start with 9 or 8
+            let mobilePattern = /^[89][0-9]{9}$/;
+
+            // Email must contain @ and a dot after @
+            let emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+            if (!mobilePattern.test(mobile)) {
+                message.style.color = "red";
+                message.innerHTML =
+                    "Invalid Mobile Number! It must have 10 digits and start with 8 or 9.";
+            } else if (!emailPattern.test(email)) {
+                message.style.color = "red";
+                message.innerHTML =
+                    "Invalid Email! Enter a valid email containing @ and a dot.";
+            } else {
+                message.style.color = "green";
+                message.innerHTML =
+                    "Mobile Number and Email are Valid!";
+            }
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>

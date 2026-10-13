@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Word in Array</title>
+</head>
+<body>
+
+    <h2>Search a Word in Array</h2>
+    <p id="output"></p>
+
+    <script>
+        let words = ["html", "css", "javascript", "python", "php"];
+        let searchWord = "python";
+        let foundIndex = -1;
+
+        for (let i = 0; i < words.length; i++) {
+            if (words[i] === searchWord) {
+                foundIndex = i;
+                break;
+            }
+        }
+
+        if (foundIndex !== -1) {
+            document.getElementById("output").innerHTML =
+                "Word '" + searchWord +
+                "' found at index " + foundIndex;
+        } else {
+            document.getElementById("output").innerHTML =
+                "Word not found";
+        }
+    </script>
+
+</body>
+</html>

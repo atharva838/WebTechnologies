@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Occurrence of A</title>
+</head>
+<body>
+
+    <h2>Find First and Last Occurrence of 'Atharva'</h2>
+
+    <p id="output"></p>
+
+    <script>
+        let word = "Atharva";
+
+        let first = word.indexOf("a");
+        let last = word.lastIndexOf("a");
+
+        let result = word.substring(first + 1, last);
+
+        document.getElementById("output").innerHTML =
+            "Given Word: " + word +
+            "<br>First occurrence of a: Position " + (first + 1) +
+            "<br>Last occurrence of a: Position " + (last + 1) +
+            "<br>String between them: " + result;
+    </script>
+
+</body>
+</html>
